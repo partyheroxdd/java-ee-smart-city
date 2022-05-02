@@ -1,10 +1,12 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
+import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.BusinessNews;
 import kz.javaee.project.madiyevmirasitis1908.service.BusinessService;
 
 
+import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +21,8 @@ public class BusinessController {
 
     static Logger logger = Logger.getLogger(BusinessController.class.getName());
 
+    @PermitAll
+    @JWTToken
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
