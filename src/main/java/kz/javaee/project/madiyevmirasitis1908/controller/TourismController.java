@@ -1,8 +1,11 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
+import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.TouristicPlace;
 import kz.javaee.project.madiyevmirasitis1908.service.TouristicService;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,6 +21,7 @@ public class TourismController {
 
     static Logger logger = Logger.getLogger(TourismController.class.getName());
 
+    @PermitAll
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -27,6 +31,7 @@ public class TourismController {
         return Response.ok().entity(result).build();
     }
 
+    @PermitAll
     @GET
     @Path("getTouristicPlace/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -47,6 +52,8 @@ public class TourismController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @POST
     @Path("/createTouristicPlace")
     public Response saveTouristicPlace(
@@ -67,6 +74,8 @@ public class TourismController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @PUT
     @Path("/updateTouristicPlace/{id}")
     public Response updateTouristicPlace(@FormParam("address") String address, @PathParam("id") Long id) {
@@ -79,6 +88,8 @@ public class TourismController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @DELETE
     @Path("/deleteTouristicPlace/{id}")
     public Response deleteById(@PathParam("id") Long id) {

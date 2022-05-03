@@ -7,6 +7,7 @@ import kz.javaee.project.madiyevmirasitis1908.service.BusinessService;
 
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,7 +23,6 @@ public class BusinessController {
     static Logger logger = Logger.getLogger(BusinessController.class.getName());
 
     @PermitAll
-    @JWTToken
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -32,6 +32,7 @@ public class BusinessController {
         return Response.ok().entity(result).build();
     }
 
+    @PermitAll
     @GET
     @Path("getNews/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -52,6 +53,8 @@ public class BusinessController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @POST
     @Path("/createNews")
     public Response saveNews(
@@ -71,6 +74,8 @@ public class BusinessController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @PUT
     @Path("/updateNews/{id}")
     public Response updateNews(@FormParam("title") String title, @PathParam("id") Long id) {
@@ -83,6 +88,8 @@ public class BusinessController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @DELETE
     @Path("/deleteNews/{id}")
     public Response deleteById(@PathParam("id") Long id) {

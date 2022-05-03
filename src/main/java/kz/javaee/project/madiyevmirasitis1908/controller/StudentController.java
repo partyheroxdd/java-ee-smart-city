@@ -2,9 +2,12 @@ package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
 
+import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.StudentPlace;
 import kz.javaee.project.madiyevmirasitis1908.service.StudentService;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,7 +23,7 @@ public class StudentController {
 
     static Logger logger = Logger.getLogger(StudentController.class.getName());
 
-
+    @PermitAll
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -30,6 +33,7 @@ public class StudentController {
         return Response.ok().entity(result).build();
     }
 
+    @PermitAll
     @GET
     @Path("getStudentPlace/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -51,6 +55,8 @@ public class StudentController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @POST
     @Path("/createStudentPlace")
     public Response saveStudentPlace(
@@ -71,6 +77,8 @@ public class StudentController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @PUT
     @Path("/updateStudentPlace/{id}")
     public Response updateStudentPlace(@FormParam("address") String address, @PathParam("id") Long id) {
@@ -83,6 +91,8 @@ public class StudentController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @DELETE
     @Path("/deleteStudentPlace/{id}")
     public Response deleteById(@PathParam("id") Long id) {

@@ -2,9 +2,11 @@ package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
 
+import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.JMS.Message;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.jms.JMSException;
 import javax.ws.rs.*;
@@ -13,7 +15,6 @@ import javax.ws.rs.ext.ExceptionMapper;
 import java.util.List;
 
 @Path("/jms")
-@PermitAll
 public class MessageController implements ExceptionMapper {
     @EJB
     private Message message;
@@ -29,7 +30,8 @@ public class MessageController implements ExceptionMapper {
     @Path("/sendMessage")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.TEXT_PLAIN)
-    @PermitAll
+    @JWTToken
+    @RolesAllowed({"ADMIN", "OWNER"})
     public Response sendMessage(String text) throws JMSException {
 
         message.sendMessage(text);
@@ -41,6 +43,7 @@ public class MessageController implements ExceptionMapper {
     @GET
     @Path("/receiveAllMessage")
     @Produces("application/json")
+    @PermitAll
     public Response getAllMessage() throws JMSException {
         List<String> receiveAllMessage = message.receiveAll();
         return  Response.ok()

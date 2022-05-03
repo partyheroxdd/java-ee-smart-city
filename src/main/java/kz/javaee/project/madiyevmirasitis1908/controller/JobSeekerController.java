@@ -1,9 +1,12 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
+import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.Vacancy;
 import kz.javaee.project.madiyevmirasitis1908.service.VacancyService;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +22,7 @@ public class JobSeekerController {
 
     static Logger logger = Logger.getLogger(JobSeekerController.class.getName());
 
+    @PermitAll
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +32,7 @@ public class JobSeekerController {
         return Response.ok().entity(result).build();
     }
 
+    @PermitAll
     @GET
     @Path("getVacancy/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -48,6 +53,8 @@ public class JobSeekerController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @POST
     @Path("/createVacancy")
     public Response saveVacancy(
@@ -70,6 +77,8 @@ public class JobSeekerController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @PUT
     @Path("/updateVacancy/{id}")
     public Response updateVacancy(@FormParam("salary") double salary, @PathParam("id") Long id) {
@@ -82,6 +91,8 @@ public class JobSeekerController {
         }
     }
 
+    @RolesAllowed({"ADMIN", "OWNER"})
+    @JWTToken
     @DELETE
     @Path("/deleteVacancy/{id}")
     public Response deleteById(@PathParam("id") Long id) {

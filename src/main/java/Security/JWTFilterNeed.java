@@ -87,7 +87,7 @@ public class JWTFilterNeed implements ContainerRequestFilter {
         if (token.equals("2aU02dqxYLwStknXJFwB")) {
             userRole = "ADMIN";
         } else if (token.equals("e55KNLny4Nv5cYkS8C4k")) {
-            userRole = "owner";
+            userRole = "OWNER";
         } else userRole = "USER";
 
         if (rolesSet.contains(userRole)) {
