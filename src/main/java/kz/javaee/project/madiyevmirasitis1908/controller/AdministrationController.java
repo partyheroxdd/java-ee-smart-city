@@ -83,7 +83,7 @@ public class AdministrationController {
     @RolesAllowed({"ADMIN"})
     @JWTToken
     @PUT
-    @Path("/updateBuilding/{id}")
+    @Path("/updateBuilding")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBuilding(Building building) {
         try {

@@ -77,7 +77,7 @@ public class TourismController {
     @RolesAllowed({"ADMIN", "OWNER"})
     @JWTToken
     @PUT
-    @Path("/updateTouristicPlace/{id}")
+    @Path("/updateTouristicPlace")
     public Response updateTouristicPlace(TouristicPlace touristicPlace) {
         try {
             touristicService.updateTouristicPlace(touristicPlace);

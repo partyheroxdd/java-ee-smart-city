@@ -78,7 +78,7 @@ public class JobSeekerController {
     @RolesAllowed({"ADMIN", "OWNER"})
     @JWTToken
     @PUT
-    @Path("/updateVacancy/{id}")
+    @Path("/updateVacancy")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateVacancy(Vacancy vacancy) {
         try {

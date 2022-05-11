@@ -80,7 +80,7 @@ public class StudentController {
     @RolesAllowed({"ADMIN", "OWNER"})
     @JWTToken
     @PUT
-    @Path("/updateStudentPlace/{id}")
+    @Path("/updateStudentPlace")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateStudentPlace(StudentPlace studentPlace) {
         try {
