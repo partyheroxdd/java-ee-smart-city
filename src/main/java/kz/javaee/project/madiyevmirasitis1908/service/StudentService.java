@@ -29,11 +29,9 @@ public class StudentService {
         session.close();
     }
 
-    public void updateStudentPlaceAddress(Long id, String address) {
+    public void updateStudentPlace(StudentPlace studentPlace) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        StudentPlace studentPlace = studentPlaceRepository.findById(id, session);
-        studentPlace.setAddress(address);
         studentPlaceRepository.update(studentPlace,session);
         tx1.commit();
         session.close();

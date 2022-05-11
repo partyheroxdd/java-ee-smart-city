@@ -29,11 +29,9 @@ public class TouristicService {
         session.close();
     }
 
-    public void updateTouristicPlaceAddress(Long id, String address) {
+    public void updateTouristicPlace(TouristicPlace touristicPlace) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        TouristicPlace touristicPlace = touristicPlaceRepository.findById(id, session);
-        touristicPlace.setAddress(address);
         touristicPlaceRepository.update(touristicPlace,session);
         tx1.commit();
         session.close();

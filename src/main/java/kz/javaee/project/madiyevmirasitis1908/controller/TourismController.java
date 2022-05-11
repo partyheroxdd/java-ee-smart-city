@@ -34,7 +34,7 @@ public class TourismController {
     @PermitAll
     @GET
     @Path("getTouristicPlace/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response getTouristicPlace(@PathParam("id") Long id) {
         try {
             TouristicPlace touristicPlace = touristicService.getTouristicPlaceById(id);
@@ -78,9 +78,9 @@ public class TourismController {
     @JWTToken
     @PUT
     @Path("/updateTouristicPlace/{id}")
-    public Response updateTouristicPlace(@FormParam("address") String address, @PathParam("id") Long id) {
+    public Response updateTouristicPlace(TouristicPlace touristicPlace) {
         try {
-            touristicService.updateTouristicPlaceAddress(id, address);
+            touristicService.updateTouristicPlace(touristicPlace);
             logger.info("Touristic place successfully updated");
             return Response.ok().build();
         } catch (Exception e) {

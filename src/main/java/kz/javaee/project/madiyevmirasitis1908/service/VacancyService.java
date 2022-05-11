@@ -29,11 +29,9 @@ public class VacancyService {
         session.close();
     }
 
-    public void updateVacancySalary(Long id, double salary) {
+    public void updateVacancy(Vacancy vacancy) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        Vacancy vacancy = vacancyRepository.findById(id, session);
-        vacancy.setSalary(salary);
         vacancyRepository.update(vacancy,session);
         tx1.commit();
         session.close();

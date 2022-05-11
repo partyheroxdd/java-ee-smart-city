@@ -79,9 +79,10 @@ public class JobSeekerController {
     @JWTToken
     @PUT
     @Path("/updateVacancy/{id}")
-    public Response updateVacancy(@FormParam("salary") double salary, @PathParam("id") Long id) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateVacancy(Vacancy vacancy) {
         try {
-            vacancyService.updateVacancySalary(id, salary);
+            vacancyService.updateVacancy(vacancy);
             logger.info("Vacancy successfully updated");
             return Response.ok().build();
         } catch (Exception e) {

@@ -31,22 +31,16 @@ public class BuildingService {
         session.close();
     }
 
-    public void updateBuilding(Long id, String name, String category,
-                               String address, String contactInfo) {
+    public void updateBuilding(Building building) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        Building building = buildingRepository.findById(id, session);
-        building.setName(name);
-        building.setCategory(category);
-        building.setAddress(address);
-        building.setContactInfo(contactInfo);
         buildingRepository.update(building, session);
         tx1.commit();
         session.close();
     }
 
 
-    public void deleteBuilidngById(Long id) {
+    public void deleteBuildingById(Long id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         Building building = buildingRepository.findById(id, session);

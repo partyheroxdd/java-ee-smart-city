@@ -81,9 +81,10 @@ public class StudentController {
     @JWTToken
     @PUT
     @Path("/updateStudentPlace/{id}")
-    public Response updateStudentPlace(@FormParam("address") String address, @PathParam("id") Long id) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateStudentPlace(StudentPlace studentPlace) {
         try {
-            studentService.updateStudentPlaceAddress(id, address);
+            studentService.updateStudentPlace(studentPlace);
             logger.info("Student place successfully updated");
             return Response.ok().build();
         } catch (Exception e) {

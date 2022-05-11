@@ -3,8 +3,6 @@ package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
 import Security.JWTToken;
-import Security.ListFilterInt;
-import kz.javaee.project.madiyevmirasitis1908.Aop.LoggerProduce;
 import kz.javaee.project.madiyevmirasitis1908.model.Building;
 import kz.javaee.project.madiyevmirasitis1908.service.BuildingService;
 
@@ -86,11 +84,10 @@ public class AdministrationController {
     @JWTToken
     @PUT
     @Path("/updateBuilding/{id}")
-    public Response updateBuilding(@FormParam("name") String name, @FormParam("category") String category,
-                                   @FormParam("address") String address, @FormParam("contactInfo") String contactInfo,
-                                   @PathParam("id") Long id) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateBuilding(Building building) {
         try {
-            buildingService.updateBuilding(id, name, category, address, contactInfo);
+            buildingService.updateBuilding(building);
             logger.info("Building successfully updated");
             return Response.ok().build();
         } catch (Exception e) {
@@ -105,7 +102,7 @@ public class AdministrationController {
     @Path("/deleteBuilding/{id}")
     public Response deleteById(@PathParam("id") Long id) {
         try {
-            buildingService.deleteBuilidngById(id);
+            buildingService.deleteBuildingById(id);
             logger.info("Building with id " + id + " deleted");
             return Response.ok().build();
         } catch (Exception e) {
