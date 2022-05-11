@@ -24,5 +24,4 @@ public class Building {
 
     private String contactInfo;
 
-    private String createdAt;
 }

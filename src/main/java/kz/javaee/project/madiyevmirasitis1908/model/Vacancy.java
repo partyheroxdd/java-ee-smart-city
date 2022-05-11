@@ -25,5 +25,4 @@ public class Vacancy {
 
     private double salary;
 
-    private String createdAt;
 }

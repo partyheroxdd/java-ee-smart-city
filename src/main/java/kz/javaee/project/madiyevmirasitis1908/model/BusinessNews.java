@@ -22,5 +22,4 @@ public class BusinessNews {
 
     private String description;
 
-    private String createdAt;
 }

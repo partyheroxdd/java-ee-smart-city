@@ -57,15 +57,9 @@ public class BusinessController {
     @JWTToken
     @POST
     @Path("/createNews")
-    public Response saveNews(
-            @FormParam("title") String title, @FormParam("company") String company,
-            @FormParam("description") String description, @FormParam("createdAt") String createdAt) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saveNews(BusinessNews businessNews) {
         try {
-            BusinessNews businessNews = new BusinessNews();
-            businessNews.setTitle(title);
-            businessNews.setCompany(company);
-            businessNews.setDescription(description);
-            businessNews.setCreatedAt(createdAt);
             businessService.createNewBusinessNews(businessNews);
             logger.info("Creating new business news, result - " + businessNews);
             return Response.ok().build();
@@ -77,10 +71,11 @@ public class BusinessController {
     @RolesAllowed({"ADMIN", "OWNER"})
     @JWTToken
     @PUT
-    @Path("/updateNews/{id}")
-    public Response updateNews(@FormParam("title") String title, @PathParam("id") Long id) {
+    @Path("/updateNews")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateNews(BusinessNews businessNews) {
         try {
-            businessService.updateBusinessNews(id, title);
+            businessService.updateBusinessNews(businessNews);
             logger.info("Business news successfully updated");
             return Response.ok().build();
         } catch (Exception e) {

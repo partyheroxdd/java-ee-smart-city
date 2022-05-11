@@ -29,11 +29,9 @@ public class BusinessService {
         session.close();
     }
 
-    public void updateBusinessNews(Long id, String title) {
+    public void updateBusinessNews(BusinessNews businessNews) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        BusinessNews businessNews = businessNewsRepository.findById(id, session);
-        businessNews.setTitle(title);
         businessNewsRepository.update(businessNews,session);
         tx1.commit();
         session.close();

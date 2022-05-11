@@ -59,8 +59,7 @@ public class JobSeekerController {
     @Path("/createVacancy")
     public Response saveVacancy(
             @FormParam("title") String title, @FormParam("company") String company,
-            @FormParam("description") String description, @FormParam("salary") double salary,
-            @FormParam("createdAt") String createdAt)
+            @FormParam("description") String description, @FormParam("salary") double salary)
     {
         try {
             Vacancy vacancy = new Vacancy();
@@ -68,7 +67,6 @@ public class JobSeekerController {
             vacancy.setCompany(company);
             vacancy.setDescription(description);
             vacancy.setSalary(salary);
-            vacancy.setCreatedAt(createdAt);
             vacancyService.createNewVacancy(vacancy);
             logger.info("Creating new vacancy, result - " + vacancy);
             return Response.ok().build();

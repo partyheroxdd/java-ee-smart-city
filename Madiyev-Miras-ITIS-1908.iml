@@ -17,7 +17,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Madiyev-Miras-ITIS-1908" />
+          <factory-entry name="Madiyev-Miras-ITIS-1908" value="fd82286f-dd3b-4d1e-b76b-1e6fcb837666" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

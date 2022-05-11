@@ -65,8 +65,7 @@ public class AdministrationController {
     @Path("/createBuilding")
     public Response saveBuilding(
             @FormParam("name") String name, @FormParam("category") String category,
-            @FormParam("address") String address, @FormParam("contactInfo") String contactInfo,
-            @FormParam("createdAt") String createdAt)
+            @FormParam("address") String address, @FormParam("contactInfo") String contactInfo)
     {
         try {
             Building building = new Building();
@@ -74,7 +73,6 @@ public class AdministrationController {
             building.setCategory(category);
             building.setAddress(address);
             building.setContactInfo(contactInfo);
-            building.setCreatedAt(createdAt);
             buildingService.createNewBuilding(building);
             logger.info("Creating new building, result - " + building);
             return Response.ok().build();
