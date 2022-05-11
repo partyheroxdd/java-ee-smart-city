@@ -57,4 +57,5 @@ public class MessageController implements ExceptionMapper {
                 .entity("Error!")
                 .build();
     }
+
 }

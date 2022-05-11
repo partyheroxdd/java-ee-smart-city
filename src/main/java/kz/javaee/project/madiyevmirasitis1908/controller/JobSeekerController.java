@@ -59,8 +59,7 @@ public class JobSeekerController {
     @Path("/createVacancy")
     public Response saveVacancy(
             @FormParam("title") String title, @FormParam("company") String company,
-            @FormParam("description") String description, @FormParam("salary") double salary)
-    {
+            @FormParam("description") String description, @FormParam("salary") double salary) {
         try {
             Vacancy vacancy = new Vacancy();
             vacancy.setTitle(title);
@@ -103,4 +102,5 @@ public class JobSeekerController {
             return Response.serverError().build();
         }
     }
+
 }

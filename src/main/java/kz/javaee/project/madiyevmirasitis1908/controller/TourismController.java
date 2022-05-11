@@ -101,4 +101,5 @@ public class TourismController {
             return Response.serverError().build();
         }
     }
+
 }
