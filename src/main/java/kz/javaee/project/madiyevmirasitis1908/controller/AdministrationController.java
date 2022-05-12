@@ -61,16 +61,10 @@ public class AdministrationController {
     @JWTToken
     @POST
     @Path("/createBuilding")
-    public Response saveBuilding(
-            @FormParam("name") String name, @FormParam("category") String category,
-            @FormParam("address") String address, @FormParam("contactInfo") String contactInfo)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saveBuilding(Building building)
     {
         try {
-            Building building = new Building();
-            building.setName(name);
-            building.setCategory(category);
-            building.setAddress(address);
-            building.setContactInfo(contactInfo);
             buildingService.createNewBuilding(building);
             logger.info("Creating new building, result - " + building);
             return Response.ok().build();

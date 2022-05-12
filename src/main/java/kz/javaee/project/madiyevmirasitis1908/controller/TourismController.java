@@ -56,16 +56,10 @@ public class TourismController {
     @JWTToken
     @POST
     @Path("/createTouristicPlace")
-    public Response saveTouristicPlace(
-            @FormParam("name") String name, @FormParam("type") String type,
-            @FormParam("address") String address, @FormParam("contactInfo") String contactInfo)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saveTouristicPlace(TouristicPlace touristicPlace)
     {
         try {
-            TouristicPlace touristicPlace = new TouristicPlace();
-            touristicPlace.setName(name);
-            touristicPlace.setType(type);
-            touristicPlace.setAddress(address);
-            touristicPlace.setContactInfo(contactInfo);
             touristicService.createNewTouristicPlace(touristicPlace);
             logger.info("Creating new touristic place, result - " + touristicPlace);
             return Response.ok().build();

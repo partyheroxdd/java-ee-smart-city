@@ -59,16 +59,10 @@ public class StudentController {
     @JWTToken
     @POST
     @Path("/createStudentPlace")
-    public Response saveStudentPlace(
-            @FormParam("name") String name, @FormParam("category") String category,
-            @FormParam("address") String address, @FormParam("contactInfo") String contactInfo)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saveStudentPlace(StudentPlace studentPlace)
     {
         try {
-            StudentPlace studentPlace = new StudentPlace();
-            studentPlace.setName(name);
-            studentPlace.setCategory(category);
-            studentPlace.setAddress(address);
-            studentPlace.setContactInfo(contactInfo);
             studentService.createNewStudentPlace(studentPlace);
             logger.info("Creating new student place, result - " + studentPlace);
             return Response.ok().build();

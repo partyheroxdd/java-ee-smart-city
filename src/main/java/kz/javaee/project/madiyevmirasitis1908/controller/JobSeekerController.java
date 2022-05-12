@@ -57,15 +57,9 @@ public class JobSeekerController {
     @JWTToken
     @POST
     @Path("/createVacancy")
-    public Response saveVacancy(
-            @FormParam("title") String title, @FormParam("company") String company,
-            @FormParam("description") String description, @FormParam("salary") double salary) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response saveVacancy(Vacancy vacancy) {
         try {
-            Vacancy vacancy = new Vacancy();
-            vacancy.setTitle(title);
-            vacancy.setCompany(company);
-            vacancy.setDescription(description);
-            vacancy.setSalary(salary);
             vacancyService.createNewVacancy(vacancy);
             logger.info("Creating new vacancy, result - " + vacancy);
             return Response.ok().build();
