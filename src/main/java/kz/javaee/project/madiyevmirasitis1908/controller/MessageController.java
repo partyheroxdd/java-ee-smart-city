@@ -28,7 +28,7 @@ public class MessageController implements ExceptionMapper {
 
     @POST
     @Path("/sendMessage")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
     @JWTToken
     @RolesAllowed({"ADMIN", "OWNER"})
@@ -42,7 +42,7 @@ public class MessageController implements ExceptionMapper {
 
     @GET
     @Path("/receiveAllMessage")
-    @Produces("application/json")
+    @Produces(MediaType.TEXT_PLAIN)
     @PermitAll
     public Response getAllMessage() throws JMSException {
         List<String> receiveAllMessage = message.receiveAll();

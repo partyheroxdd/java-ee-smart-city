@@ -7,6 +7,7 @@ import kz.javaee.project.madiyevmirasitis1908.model.Building;
 import kz.javaee.project.madiyevmirasitis1908.service.BuildingService;
 
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -23,8 +24,7 @@ public class AdministrationController {
 
     static Logger logger = Logger.getLogger(AdministrationController.class.getName());
 
-    @RolesAllowed({"ADMIN"})
-    @JWTToken
+    @PermitAll
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,8 +34,7 @@ public class AdministrationController {
         return Response.ok().entity(result).build();
     }
 
-    @RolesAllowed({"ADMIN"})
-    @JWTToken
+    @PermitAll
     @GET
     @Path("getBuilding/{id}")
     @Produces(MediaType.APPLICATION_JSON)
