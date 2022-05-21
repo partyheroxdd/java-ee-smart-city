@@ -2,7 +2,7 @@ package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
 
-import Security.JWTToken;
+
 import kz.javaee.project.madiyevmirasitis1908.model.Building;
 import kz.javaee.project.madiyevmirasitis1908.service.BuildingService;
 
@@ -24,7 +24,7 @@ public class AdministrationController {
 
     static Logger logger = Logger.getLogger(AdministrationController.class.getName());
 
-    @PermitAll
+    @RolesAllowed({"ADMIN"})
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,7 +34,7 @@ public class AdministrationController {
         return Response.ok().entity(result).build();
     }
 
-    @PermitAll
+    @RolesAllowed({"ADMIN"})
     @GET
     @Path("getBuilding/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,7 +57,6 @@ public class AdministrationController {
     }
 
     @RolesAllowed({"ADMIN"})
-    @JWTToken
     @POST
     @Path("/createBuilding")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -74,7 +73,6 @@ public class AdministrationController {
     }
 
     @RolesAllowed({"ADMIN"})
-    @JWTToken
     @PUT
     @Path("/updateBuilding")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -90,7 +88,6 @@ public class AdministrationController {
     }
 
     @RolesAllowed({"ADMIN"})
-    @JWTToken
     @DELETE
     @Path("/deleteBuilding/{id}")
     public Response deleteById(@PathParam("id") Long id) {

@@ -1,7 +1,7 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
-import Security.JWTToken;
+
 import kz.javaee.project.madiyevmirasitis1908.model.BusinessNews;
 import kz.javaee.project.madiyevmirasitis1908.service.BusinessService;
 
@@ -32,7 +32,7 @@ public class BusinessController {
         return Response.ok().entity(result).build();
     }
 
-    @PermitAll
+    @RolesAllowed({"ADMIN", "OWNER"})
     @GET
     @Path("getNews/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,7 +54,6 @@ public class BusinessController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @POST
     @Path("/createNews")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -69,7 +68,6 @@ public class BusinessController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @PUT
     @Path("/updateNews")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -84,7 +82,6 @@ public class BusinessController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @DELETE
     @Path("/deleteNews/{id}")
     public Response deleteById(@PathParam("id") Long id) {

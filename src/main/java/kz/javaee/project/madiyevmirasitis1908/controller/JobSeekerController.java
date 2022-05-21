@@ -1,7 +1,6 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
-import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.Vacancy;
 import kz.javaee.project.madiyevmirasitis1908.service.VacancyService;
 
@@ -32,8 +31,8 @@ public class JobSeekerController {
         return Response.ok().entity(result).build();
     }
 
-    @PermitAll
     @GET
+    @RolesAllowed({"ADMIN", "OWNER"})
     @Path("getVacancy/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVacancy(@PathParam("id") Long id) {
@@ -54,7 +53,6 @@ public class JobSeekerController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @POST
     @Path("/createVacancy")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -69,7 +67,6 @@ public class JobSeekerController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @PUT
     @Path("/updateVacancy")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -84,7 +81,6 @@ public class JobSeekerController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @DELETE
     @Path("/deleteVacancy/{id}")
     public Response deleteById(@PathParam("id") Long id) {

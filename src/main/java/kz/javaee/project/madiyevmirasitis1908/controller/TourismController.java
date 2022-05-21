@@ -1,6 +1,5 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
-import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.TouristicPlace;
 import kz.javaee.project.madiyevmirasitis1908.service.TouristicService;
 
@@ -31,7 +30,7 @@ public class TourismController {
         return Response.ok().entity(result).build();
     }
 
-    @PermitAll
+    @RolesAllowed({"ADMIN", "OWNER"})
     @GET
     @Path("getTouristicPlace/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -53,7 +52,6 @@ public class TourismController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @POST
     @Path("/createTouristicPlace")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -69,7 +67,6 @@ public class TourismController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @PUT
     @Path("/updateTouristicPlace")
     public Response updateTouristicPlace(TouristicPlace touristicPlace) {
@@ -83,7 +80,6 @@ public class TourismController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @DELETE
     @Path("/deleteTouristicPlace/{id}")
     public Response deleteById(@PathParam("id") Long id) {

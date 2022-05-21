@@ -2,7 +2,7 @@ package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
 
-import Security.JWTToken;
+
 import kz.javaee.project.madiyevmirasitis1908.JMS.Message;
 
 import javax.annotation.security.PermitAll;
@@ -28,10 +28,9 @@ public class MessageController implements ExceptionMapper {
 
     @POST
     @Path("/sendMessage")
+    @RolesAllowed({"ADMIN"})
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
-    @JWTToken
-    @RolesAllowed({"ADMIN", "OWNER"})
     public Response sendMessage(String text) throws JMSException {
 
         message.sendMessage(text);

@@ -2,7 +2,6 @@ package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
 
-import Security.JWTToken;
 import kz.javaee.project.madiyevmirasitis1908.model.StudentPlace;
 import kz.javaee.project.madiyevmirasitis1908.service.StudentService;
 
@@ -33,7 +32,7 @@ public class StudentController {
         return Response.ok().entity(result).build();
     }
 
-    @PermitAll
+    @RolesAllowed({"ADMIN", "OWNER"})
     @GET
     @Path("getStudentPlace/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +55,6 @@ public class StudentController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @POST
     @Path("/createStudentPlace")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -72,7 +70,6 @@ public class StudentController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @PUT
     @Path("/updateStudentPlace")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -87,7 +84,6 @@ public class StudentController {
     }
 
     @RolesAllowed({"ADMIN", "OWNER"})
-    @JWTToken
     @DELETE
     @Path("/deleteStudentPlace/{id}")
     public Response deleteById(@PathParam("id") Long id) {
