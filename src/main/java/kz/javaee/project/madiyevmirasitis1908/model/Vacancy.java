@@ -23,6 +23,6 @@ public class Vacancy {
 
     private String description;
 
-    private double salary;
+    private String salary;
 
 }
