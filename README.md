@@ -1,2 +1,2 @@
-                                            Final Project Madiyev Miras ITIS-1908
+                                            Miras Azhar Java EE Porject ITIS-1908
                                                           Smart City

@@ -82,5 +82,6 @@
     <orderEntry type="library" name="Maven: org.eclipse.persistence:eclipselink:2.7.9" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:jakarta.persistence:2.2.3" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" level="project" />
+
   </component>
 </module>
