@@ -12,40 +12,42 @@ import java.util.List;
 
 @Stateful
 public class BuildingService {
-    @EJB
-    BuildingRepository buildingRepository;
 
-    public List<Building> getAll() {
-        return buildingRepository.getAll();
-    }
+  @EJB
+  BuildingRepository buildingRepository;
 
-    public Building getBuildingById(Long id) {
-        return buildingRepository.findById(id, HibernateSessionFactoryUtil.getSessionFactory().openSession());
-    }
+  public List<Building> getAll() {
+    return buildingRepository.getAll();
+  }
 
-    public void createNewBuilding(Building building) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        buildingRepository.save(building, session);
-        tx1.commit();
-        session.close();
-    }
+  public Building getBuildingById(Long id) {
+    return buildingRepository.findById(id,
+        HibernateSessionFactoryUtil.getSessionFactory().openSession());
+  }
 
-    public void updateBuilding(Building building) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        buildingRepository.update(building, session);
-        tx1.commit();
-        session.close();
-    }
+  public void createNewBuilding(Building building) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    buildingRepository.save(building, session);
+    tx1.commit();
+    session.close();
+  }
+
+  public void updateBuilding(Building building) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    buildingRepository.update(building, session);
+    tx1.commit();
+    session.close();
+  }
 
 
-    public void deleteBuildingById(Long id) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        Building building = buildingRepository.findById(id, session);
-        buildingRepository.delete(building, session);
-        tx1.commit();
-        session.close();
-    }
+  public void deleteBuildingById(Long id) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    Building building = buildingRepository.findById(id, session);
+    buildingRepository.delete(building, session);
+    tx1.commit();
+    session.close();
+  }
 }

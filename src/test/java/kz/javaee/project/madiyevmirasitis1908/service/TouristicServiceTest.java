@@ -15,40 +15,46 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class TouristicServiceTest {
-    @Mock
-    TouristicPlaceRepository touristicPlaceRepository;
-    @InjectMocks
-    TouristicService touristicService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
+  @Mock
+  TouristicPlaceRepository touristicPlaceRepository;
+  @InjectMocks
+  TouristicService touristicService;
 
-    @Test
-    void testGetTouristicPlaceById() {
-        when(touristicPlaceRepository.findById(anyLong(), any())).thenReturn(new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.initMocks(this);
+  }
 
-        TouristicPlace result = touristicService.getTouristicPlaceById(Long.valueOf(1));
-        Assertions.assertEquals(new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"), result);
-    }
+  @Test
+  void testGetTouristicPlaceById() {
+    when(touristicPlaceRepository.findById(anyLong(), any())).thenReturn(
+        new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
 
-    @Test
-    void testCreateNewTouristicPlace() {
-        touristicService.createNewTouristicPlace(new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
-    }
+    TouristicPlace result = touristicService.getTouristicPlaceById(Long.valueOf(1));
+    Assertions.assertEquals(
+        new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"), result);
+  }
 
-    @Test
-    void testUpdateTouristicPlace() {
-        touristicService.updateTouristicPlace(new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
-    }
+  @Test
+  void testCreateNewTouristicPlace() {
+    touristicService.createNewTouristicPlace(
+        new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
+  }
 
-    @Test
-    void testDeleteTouristicPlaceById() {
-        when(touristicPlaceRepository.findById(anyLong(), any())).thenReturn(new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
+  @Test
+  void testUpdateTouristicPlace() {
+    touristicService.updateTouristicPlace(
+        new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
+  }
 
-        touristicService.deleteTouristicPlaceById(Long.valueOf(1));
-    }
+  @Test
+  void testDeleteTouristicPlaceById() {
+    when(touristicPlaceRepository.findById(anyLong(), any())).thenReturn(
+        new TouristicPlace(Long.valueOf(1), "name", "type", "address", "contactInfo"));
+
+    touristicService.deleteTouristicPlaceById(Long.valueOf(1));
+  }
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

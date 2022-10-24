@@ -7,10 +7,11 @@ import javax.ws.rs.core.Application;
 
 @ApplicationPath("/")
 public class HelloApplication extends Application {
-    @GET
-    @Path("/")
-    public String hello(){
-        HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        return "Hello";
-    }
+
+  @GET
+  @Path("/")
+  public String hello() {
+    HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    return "Hello";
+  }
 }

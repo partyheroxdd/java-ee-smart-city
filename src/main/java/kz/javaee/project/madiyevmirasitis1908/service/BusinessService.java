@@ -12,38 +12,42 @@ import java.util.List;
 
 @Stateful
 public class BusinessService {
-    @EJB
-    BusinessNewsRepository businessNewsRepository;
 
-    public List<BusinessNews> getAll(){ return businessNewsRepository.getAll();}
+  @EJB
+  BusinessNewsRepository businessNewsRepository;
 
-    public BusinessNews getBusinessNewsById(Long id) {
-        return businessNewsRepository.findById(id, HibernateSessionFactoryUtil.getSessionFactory().openSession());
-    }
+  public List<BusinessNews> getAll() {
+    return businessNewsRepository.getAll();
+  }
 
-    public void createNewBusinessNews(BusinessNews businessNews) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        businessNewsRepository.save(businessNews, session);
-        tx1.commit();
-        session.close();
-    }
+  public BusinessNews getBusinessNewsById(Long id) {
+    return businessNewsRepository.findById(id,
+        HibernateSessionFactoryUtil.getSessionFactory().openSession());
+  }
 
-    public void updateBusinessNews(BusinessNews businessNews) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        businessNewsRepository.update(businessNews,session);
-        tx1.commit();
-        session.close();
-    }
+  public void createNewBusinessNews(BusinessNews businessNews) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    businessNewsRepository.save(businessNews, session);
+    tx1.commit();
+    session.close();
+  }
+
+  public void updateBusinessNews(BusinessNews businessNews) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    businessNewsRepository.update(businessNews, session);
+    tx1.commit();
+    session.close();
+  }
 
 
-    public void deleteBusinessNewsById(Long id) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        BusinessNews businessNews = businessNewsRepository.findById(id,session);
-        businessNewsRepository.delete(businessNews, session);
-        tx1.commit();
-        session.close();
-    }
+  public void deleteBusinessNewsById(Long id) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    BusinessNews businessNews = businessNewsRepository.findById(id, session);
+    businessNewsRepository.delete(businessNews, session);
+    tx1.commit();
+    session.close();
+  }
 }

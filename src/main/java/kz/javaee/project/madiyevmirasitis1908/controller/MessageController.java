@@ -1,8 +1,6 @@
 package kz.javaee.project.madiyevmirasitis1908.controller;
 
 
-
-
 import kz.javaee.project.madiyevmirasitis1908.JMS.Message;
 
 import javax.annotation.security.PermitAll;
@@ -16,45 +14,46 @@ import java.util.List;
 
 @Path("/jms")
 public class MessageController implements ExceptionMapper {
-    @EJB
-    private Message message;
 
-    @Context
-    UriInfo uriInfo;
-    @Context
-    Request request;
-    @Context
-    HttpHeaders httpHeaders;
+  @EJB
+  private Message message;
 
-    @POST
-    @Path("/sendMessage")
-    @RolesAllowed({"ADMIN"})
-    @Produces(MediaType.TEXT_PLAIN)
-    @Consumes(MediaType.TEXT_PLAIN)
-    public Response sendMessage(String text) throws JMSException {
+  @Context
+  UriInfo uriInfo;
+  @Context
+  Request request;
+  @Context
+  HttpHeaders httpHeaders;
 
-        message.sendMessage(text);
-        return  Response.ok()
-                .entity("Message - {" + text + "} was sent to all user")
-                .build();
-    }
+  @POST
+  @Path("/sendMessage")
+  @RolesAllowed({"ADMIN"})
+  @Produces(MediaType.TEXT_PLAIN)
+  @Consumes(MediaType.TEXT_PLAIN)
+  public Response sendMessage(String text) throws JMSException {
 
-    @GET
-    @Path("/receiveAllMessage")
-    @Produces(MediaType.TEXT_PLAIN)
-    @PermitAll
-    public Response getAllMessage() throws JMSException {
-        List<String> receiveAllMessage = message.receiveAll();
-        return  Response.ok()
-                .entity("Message " + receiveAllMessage + " from admin")
-                .build();
-    }
+    message.sendMessage(text);
+    return Response.ok()
+        .entity("Message - {" + text + "} was sent to all user")
+        .build();
+  }
 
-    @Override
-    public Response toResponse(Throwable throwable) {
-        return Response.status(500)
-                .entity("Error!")
-                .build();
-    }
+  @GET
+  @Path("/receiveAllMessage")
+  @Produces(MediaType.TEXT_PLAIN)
+  @PermitAll
+  public Response getAllMessage() throws JMSException {
+    List<String> receiveAllMessage = message.receiveAll();
+    return Response.ok()
+        .entity("Message " + receiveAllMessage + " from admin")
+        .build();
+  }
+
+  @Override
+  public Response toResponse(Throwable throwable) {
+    return Response.status(500)
+        .entity("Error!")
+        .build();
+  }
 
 }

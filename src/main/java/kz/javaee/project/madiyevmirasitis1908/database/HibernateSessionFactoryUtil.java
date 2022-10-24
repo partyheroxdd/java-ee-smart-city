@@ -8,27 +8,29 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateSessionFactoryUtil {
 
-    private static SessionFactory sessionFactory;
+  private static SessionFactory sessionFactory;
 
-    private HibernateSessionFactoryUtil() {}
+  private HibernateSessionFactoryUtil() {
+  }
 
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            try {
-                Configuration configuration = new Configuration().configure();
-                configuration.addAnnotatedClass(Vacancy.class);
-                configuration.addAnnotatedClass(TouristicPlace.class);
-                configuration.addAnnotatedClass(StudentPlace.class);
-                configuration.addAnnotatedClass(BusinessNews.class);
-                configuration.addAnnotatedClass(Building.class);
-                configuration.addAnnotatedClass(User.class);
-                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-                sessionFactory = configuration.buildSessionFactory(builder.build());
+  public static SessionFactory getSessionFactory() {
+    if (sessionFactory == null) {
+      try {
+        Configuration configuration = new Configuration().configure();
+        configuration.addAnnotatedClass(Vacancy.class);
+        configuration.addAnnotatedClass(TouristicPlace.class);
+        configuration.addAnnotatedClass(StudentPlace.class);
+        configuration.addAnnotatedClass(BusinessNews.class);
+        configuration.addAnnotatedClass(Building.class);
+        configuration.addAnnotatedClass(User.class);
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(
+            configuration.getProperties());
+        sessionFactory = configuration.buildSessionFactory(builder.build());
 
-            } catch (Exception e) {
-                System.out.println("Exception!" + e);
-            }
-        }
-        return sessionFactory;
+      } catch (Exception e) {
+        System.out.println("Exception!" + e);
+      }
     }
+    return sessionFactory;
+  }
 }

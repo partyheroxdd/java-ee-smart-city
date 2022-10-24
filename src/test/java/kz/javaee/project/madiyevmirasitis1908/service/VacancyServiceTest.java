@@ -15,40 +15,46 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class VacancyServiceTest {
-    @Mock
-    VacancyRepository vacancyRepository;
-    @InjectMocks
-    VacancyService vacancyService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
+  @Mock
+  VacancyRepository vacancyRepository;
+  @InjectMocks
+  VacancyService vacancyService;
 
-    @Test
-    void testGetVacancyById() {
-        when(vacancyRepository.findById(anyLong(), any())).thenReturn(new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.initMocks(this);
+  }
 
-        Vacancy result = vacancyService.getVacancyById(Long.valueOf(1));
-        Assertions.assertEquals(new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"), result);
-    }
+  @Test
+  void testGetVacancyById() {
+    when(vacancyRepository.findById(anyLong(), any())).thenReturn(
+        new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
 
-    @Test
-    void testCreateNewVacancy() {
-        vacancyService.createNewVacancy(new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
-    }
+    Vacancy result = vacancyService.getVacancyById(Long.valueOf(1));
+    Assertions.assertEquals(
+        new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"), result);
+  }
 
-    @Test
-    void testUpdateVacancy() {
-        vacancyService.updateVacancy(new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
-    }
+  @Test
+  void testCreateNewVacancy() {
+    vacancyService.createNewVacancy(
+        new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
+  }
 
-    @Test
-    void testDeleteVacancyById() {
-        when(vacancyRepository.findById(anyLong(), any())).thenReturn(new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
+  @Test
+  void testUpdateVacancy() {
+    vacancyService.updateVacancy(
+        new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
+  }
 
-        vacancyService.deleteVacancyById(Long.valueOf(1));
-    }
+  @Test
+  void testDeleteVacancyById() {
+    when(vacancyRepository.findById(anyLong(), any())).thenReturn(
+        new Vacancy(Long.valueOf(1), "title", "company", "description", "salary"));
+
+    vacancyService.deleteVacancyById(Long.valueOf(1));
+  }
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

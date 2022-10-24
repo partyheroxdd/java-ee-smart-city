@@ -12,37 +12,41 @@ import java.util.List;
 
 @Stateful
 public class VacancyService {
-    @EJB
-    VacancyRepository vacancyRepository;
 
-    public List<Vacancy> getAll(){ return vacancyRepository.getAll();}
+  @EJB
+  VacancyRepository vacancyRepository;
 
-    public Vacancy getVacancyById(Long id) {
-        return vacancyRepository.findById(id, HibernateSessionFactoryUtil.getSessionFactory().openSession());
-    }
+  public List<Vacancy> getAll() {
+    return vacancyRepository.getAll();
+  }
 
-    public void createNewVacancy(Vacancy vacancy) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        vacancyRepository.save(vacancy, session);
-        tx1.commit();
-        session.close();
-    }
+  public Vacancy getVacancyById(Long id) {
+    return vacancyRepository.findById(id,
+        HibernateSessionFactoryUtil.getSessionFactory().openSession());
+  }
 
-    public void updateVacancy(Vacancy vacancy) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        vacancyRepository.update(vacancy,session);
-        tx1.commit();
-        session.close();
-    }
+  public void createNewVacancy(Vacancy vacancy) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    vacancyRepository.save(vacancy, session);
+    tx1.commit();
+    session.close();
+  }
 
-    public void deleteVacancyById(Long id) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        Vacancy vacancy = vacancyRepository.findById(id,session);
-        vacancyRepository.delete(vacancy, session);
-        tx1.commit();
-        session.close();
-    }
+  public void updateVacancy(Vacancy vacancy) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    vacancyRepository.update(vacancy, session);
+    tx1.commit();
+    session.close();
+  }
+
+  public void deleteVacancyById(Long id) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    Vacancy vacancy = vacancyRepository.findById(id, session);
+    vacancyRepository.delete(vacancy, session);
+    tx1.commit();
+    session.close();
+  }
 }

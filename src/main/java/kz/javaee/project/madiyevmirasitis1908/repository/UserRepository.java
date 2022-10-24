@@ -6,10 +6,16 @@ import org.hibernate.Session;
 import java.util.List;
 
 public interface UserRepository {
-    List<User> getAll();
-    User findById(Long id, Session session);
-    User authenticate(String login, String password);
-    void save(User u, Session session);
-    void update(User u, Session session);
-    void delete(User u, Session session);
+
+  List<User> getAll();
+
+  User findById(Long id, Session session);
+
+  User authenticate(String login, String password);
+
+  void save(User u, Session session);
+
+  void update(User u, Session session);
+
+  void delete(User u, Session session);
 }

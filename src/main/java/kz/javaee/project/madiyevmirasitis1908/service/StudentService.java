@@ -12,38 +12,42 @@ import java.util.List;
 
 @Stateful
 public class StudentService {
-    @EJB
-    StudentPlaceRepository studentPlaceRepository;
 
-    public List<StudentPlace> getAll(){ return studentPlaceRepository.getAll();}
+  @EJB
+  StudentPlaceRepository studentPlaceRepository;
 
-    public StudentPlace getStudentPlaceById(Long id) {
-        return studentPlaceRepository.findById(id, HibernateSessionFactoryUtil.getSessionFactory().openSession());
-    }
+  public List<StudentPlace> getAll() {
+    return studentPlaceRepository.getAll();
+  }
 
-    public void createNewStudentPlace(StudentPlace studentPlace) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        studentPlaceRepository.save(studentPlace, session);
-        tx1.commit();
-        session.close();
-    }
+  public StudentPlace getStudentPlaceById(Long id) {
+    return studentPlaceRepository.findById(id,
+        HibernateSessionFactoryUtil.getSessionFactory().openSession());
+  }
 
-    public void updateStudentPlace(StudentPlace studentPlace) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        studentPlaceRepository.update(studentPlace,session);
-        tx1.commit();
-        session.close();
-    }
+  public void createNewStudentPlace(StudentPlace studentPlace) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    studentPlaceRepository.save(studentPlace, session);
+    tx1.commit();
+    session.close();
+  }
+
+  public void updateStudentPlace(StudentPlace studentPlace) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    studentPlaceRepository.update(studentPlace, session);
+    tx1.commit();
+    session.close();
+  }
 
 
-    public void deleteStudentPlaceById(Long id) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        StudentPlace studentPlace = studentPlaceRepository.findById(id,session);
-        studentPlaceRepository.delete(studentPlace, session);
-        tx1.commit();
-        session.close();
-    }
+  public void deleteStudentPlaceById(Long id) {
+    Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+    Transaction tx1 = session.beginTransaction();
+    StudentPlace studentPlace = studentPlaceRepository.findById(id, session);
+    studentPlaceRepository.delete(studentPlace, session);
+    tx1.commit();
+    session.close();
+  }
 }

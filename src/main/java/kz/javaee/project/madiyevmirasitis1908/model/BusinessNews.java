@@ -12,14 +12,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "business_news")
 public class BusinessNews {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String title;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String company;
+  private String title;
 
-    private String description;
+  private String company;
+
+  private String description;
 
 }

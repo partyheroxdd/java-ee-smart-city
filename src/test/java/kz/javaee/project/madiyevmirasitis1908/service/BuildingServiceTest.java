@@ -15,40 +15,46 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class BuildingServiceTest {
-    @Mock
-    BuildingRepository buildingRepository;
-    @InjectMocks
-    BuildingService buildingService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
+  @Mock
+  BuildingRepository buildingRepository;
+  @InjectMocks
+  BuildingService buildingService;
 
-    @Test
-    void testGetBuildingById() {
-        when(buildingRepository.findById(anyLong(), any())).thenReturn(new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.initMocks(this);
+  }
 
-        Building result = buildingService.getBuildingById(Long.valueOf(1));
-        Assertions.assertEquals(new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"), result);
-    }
+  @Test
+  void testGetBuildingById() {
+    when(buildingRepository.findById(anyLong(), any())).thenReturn(
+        new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
 
-    @Test
-    void testCreateNewBuilding() {
-        buildingService.createNewBuilding(new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
-    }
+    Building result = buildingService.getBuildingById(Long.valueOf(1));
+    Assertions.assertEquals(
+        new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"), result);
+  }
 
-    @Test
-    void testUpdateBuilding() {
-        buildingService.updateBuilding(new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
-    }
+  @Test
+  void testCreateNewBuilding() {
+    buildingService.createNewBuilding(
+        new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
+  }
 
-    @Test
-    void testDeleteBuildingById() {
-        when(buildingRepository.findById(anyLong(), any())).thenReturn(new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
+  @Test
+  void testUpdateBuilding() {
+    buildingService.updateBuilding(
+        new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
+  }
 
-        buildingService.deleteBuildingById(Long.valueOf(1));
-    }
+  @Test
+  void testDeleteBuildingById() {
+    when(buildingRepository.findById(anyLong(), any())).thenReturn(
+        new Building(Long.valueOf(1), "name", "category", "address", "contactInfo"));
+
+    buildingService.deleteBuildingById(Long.valueOf(1));
+  }
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

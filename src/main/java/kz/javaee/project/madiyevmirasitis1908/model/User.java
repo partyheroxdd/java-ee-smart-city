@@ -10,14 +10,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
-    private String login;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-    private String password;
+  private String login;
 
-    private String role;
+  private String password;
+
+  private String role;
 
 }

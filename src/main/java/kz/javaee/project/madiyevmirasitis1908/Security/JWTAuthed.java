@@ -8,6 +8,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @javax.ws.rs.NameBinding
 @Retention(RUNTIME)
-@Target({ ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface JWTAuthed {
+
 }

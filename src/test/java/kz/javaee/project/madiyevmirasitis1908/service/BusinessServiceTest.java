@@ -15,40 +15,46 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 class BusinessServiceTest {
-    @Mock
-    BusinessNewsRepository businessNewsRepository;
-    @InjectMocks
-    BusinessService businessService;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
+  @Mock
+  BusinessNewsRepository businessNewsRepository;
+  @InjectMocks
+  BusinessService businessService;
 
-    @Test
-    void testGetBusinessNewsById() {
-        when(businessNewsRepository.findById(anyLong(), any())).thenReturn(new BusinessNews(Long.valueOf(1), "title", "company", "description"));
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.initMocks(this);
+  }
 
-        BusinessNews result = businessService.getBusinessNewsById(Long.valueOf(1));
-        Assertions.assertEquals(new BusinessNews(Long.valueOf(1), "title", "company", "description"), result);
-    }
+  @Test
+  void testGetBusinessNewsById() {
+    when(businessNewsRepository.findById(anyLong(), any())).thenReturn(
+        new BusinessNews(Long.valueOf(1), "title", "company", "description"));
 
-    @Test
-    void testCreateNewBusinessNews() {
-        businessService.createNewBusinessNews(new BusinessNews(Long.valueOf(1), "title", "company", "description"));
-    }
+    BusinessNews result = businessService.getBusinessNewsById(Long.valueOf(1));
+    Assertions.assertEquals(new BusinessNews(Long.valueOf(1), "title", "company", "description"),
+        result);
+  }
 
-    @Test
-    void testUpdateBusinessNews() {
-        businessService.updateBusinessNews(new BusinessNews(Long.valueOf(1), "title", "company", "description"));
-    }
+  @Test
+  void testCreateNewBusinessNews() {
+    businessService.createNewBusinessNews(
+        new BusinessNews(Long.valueOf(1), "title", "company", "description"));
+  }
 
-    @Test
-    void testDeleteBusinessNewsById() {
-        when(businessNewsRepository.findById(anyLong(), any())).thenReturn(new BusinessNews(Long.valueOf(1), "title", "company", "description"));
+  @Test
+  void testUpdateBusinessNews() {
+    businessService.updateBusinessNews(
+        new BusinessNews(Long.valueOf(1), "title", "company", "description"));
+  }
 
-        businessService.deleteBusinessNewsById(Long.valueOf(1));
-    }
+  @Test
+  void testDeleteBusinessNewsById() {
+    when(businessNewsRepository.findById(anyLong(), any())).thenReturn(
+        new BusinessNews(Long.valueOf(1), "title", "company", "description"));
+
+    businessService.deleteBusinessNewsById(Long.valueOf(1));
+  }
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme
