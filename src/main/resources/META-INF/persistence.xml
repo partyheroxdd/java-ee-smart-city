@@ -6,7 +6,7 @@
   <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
 
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>kz.javaee.project.madiyevmirasitis1908.model.User</class>
+    <class>kz.javaee.project.mirasazharitis1908.model.User</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/final"/>

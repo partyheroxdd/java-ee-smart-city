@@ -1,4 +1,4 @@
-import kz.javaee.project.madiyevmirasitis1908.database.HibernateSessionFactoryUtil;
+import kz.javaee.project.mirasazharitis1908.database.HibernateSessionFactoryUtil;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;

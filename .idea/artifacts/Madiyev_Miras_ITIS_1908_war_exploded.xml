@@ -6,13 +6,12 @@
         <exploded>true</exploded>
         <module>Madiyev-Miras-ITIS-1908</module>
         <packaging>war</packaging>
-        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Madiyev-Miras-ITIS-1908" />
+          <element id="module-output" name="Miras-Azhar-ITIS-1908" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.0" />
@@ -48,7 +47,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Madiyev-Miras-ITIS-1908-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="Madiyev-Miras-ITIS-1908/web/Web" />
+      <element id="javaee-facet-resources" facet="Miras-Azhar-ITIS-1908/web/Web" />
     </root>
   </artifact>
 </component>
